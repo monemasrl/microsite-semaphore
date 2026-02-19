@@ -1,6 +1,20 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# I parametri sono passati come var1=val1 var2=val2 ... al comando di esecuzione dello script (es: via API o survey vars).
+
+for arg in "$@"; do
+  KEY="${arg%%=*}"
+  VALUE="${arg#*=}"
+  declare -A args
+  args["$KEY"]="$VALUE"
+done
+
+# Export the arguments as environment variables
+for key in "${!args[@]}"; do
+  export "$key"="${args[$key]}"
+done
+
 # ---- Required params (passali via API / survey vars) ----
 : "${SITE_ID:?missing SITE_ID}"
 : "${GIT_REF:?missing GIT_REF}"                         # es: main, tag, commit
