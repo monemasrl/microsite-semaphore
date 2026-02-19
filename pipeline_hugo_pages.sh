@@ -29,12 +29,13 @@ SRC_DIR="${SRC_DIR:-$PWD}"        # Semaphore di solito esegue nel working copy 
 OUT_DIR="${RUN_DIR}/out"
 CFG_DIR="${RUN_DIR}/cfg"
 
-mkdir -p "$OUT_DIR" "$CFG_DIR"
 
 echo "==> [${SITE_ID}] run=${JOB_ID}"
 echo "==> SRC_DIR=$SRC_DIR"
 echo "==> OUT_DIR=$OUT_DIR"
 echo "==> CONFIG_URL=$CONFIG_URL"
+
+mkdir -p "$OUT_DIR" "$CFG_DIR"
 
 # ---- 1) Download config file ----
 CFG_PATH="${CFG_DIR}/${CONFIG_FILENAME}"
